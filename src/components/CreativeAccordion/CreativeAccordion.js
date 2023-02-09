@@ -4,18 +4,47 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
-const CreativeAccordion = () => {
+const CustomExpandIcon = () => {
+  return (
+    <div>
+      <div className="expandMoreIcon">
+        <AddIcon />
+      </div>
+      <div className="removeExpandIcon">
+        <RemoveIcon />
+      </div>
+    </div>
+  );
+};
+
+const CreativeAccordion = ({ title, description }) => {
   return (
     <Accordion
       sx={{
         boxShadow: "none",
         border: "1px solid #E5EAF4",
         p: 2,
+        "& .Mui-expanded": {
+          "& .expandMoreIcon": {
+            display: "none",
+          },
+          "& .removeExpandIcon": {
+            display: "block",
+            "& svg": {
+              color: "primary.green",
+            },
+          },
+        },
       }}
     >
       <AccordionSummary
         sx={{
+          "& .removeExpandIcon": {
+            display: "none",
+          },
           "& p": {
             color: "primary.main",
             fontWeight: "bold",
@@ -26,11 +55,11 @@ const CreativeAccordion = () => {
             },
           },
         }}
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<CustomExpandIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography>Accordion 1</Typography>
+        <Typography>{title}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography
@@ -38,8 +67,7 @@ const CreativeAccordion = () => {
             color: "#5A7184",
           }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
+          {description}
         </Typography>
       </AccordionDetails>
     </Accordion>

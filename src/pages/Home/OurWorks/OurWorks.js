@@ -34,6 +34,7 @@ const OurWorks = () => {
 
         <Box
           sx={{
+            mb: 1,
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -64,7 +65,11 @@ const OurWorks = () => {
           <Box>
             <IconButton
               sx={{
-                border: `1px solid #959EAD`,
+                border: (theme) =>
+                  `1px solid ${
+                    value === 0 ? "#959EAD" : theme.palette.primary.main
+                  }`,
+                color: "primary.main",
                 mr: 2,
               }}
               onClick={() => setValue(value - 1)}
@@ -74,7 +79,11 @@ const OurWorks = () => {
             </IconButton>
             <IconButton
               sx={{
-                border: `1px solid #959AED`,
+                border: (theme) =>
+                  `1px solid ${
+                    value === 2 ? "#959EAD" : theme.palette.primary.main
+                  }`,
+                color: "primary.main",
               }}
               onClick={() => setValue(value + 1)}
               disabled={value === 2}
